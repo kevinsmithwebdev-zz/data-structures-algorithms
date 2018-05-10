@@ -8,6 +8,7 @@ const hasUnique = (str) => {
       return false
     arr.push(str[i])
   }
+  console.log('arr', arr)
   return true
 }
 
