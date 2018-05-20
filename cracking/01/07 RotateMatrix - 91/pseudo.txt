@@ -1,0 +1,18 @@
+n = number of rows/cols
+mid = floor(n/2)
+loop ring from 0 to mid-1
+  loop i from ring to n-1-ring
+
+    holder1 = loc i+ring, i+ring
+    loc i+ring, i+ring = loc n-i, i+ring
+
+    holder2 = loc i+ring, n-ring
+    loc i+ring, n-i-ring = holder1
+    holder1=holder2
+
+    holder2 = loc n-i-ring, n-ring
+    loc n-ring, n-ring = holder1
+    holder1=holder2
+
+    holder2 = loc n-i-ring, i+ring
+    loc n-i-ring, i+ring = holder1
