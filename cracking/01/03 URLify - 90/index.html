@@ -2,9 +2,17 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Cracking 01-03</title>
+    <title>[blank]</title>
   </head>
   <body>
+    <h1 id="title"><h1>
+    <script type="text/javascript">
+      let pathArr = window.location.pathname.split('/').map(s => s.replace(/%20/g, ' '))
+      let last = pathArr.length-1
+      let loc = `${pathArr[last-3]} - ${pathArr[last-2]} - ${pathArr[last-1]}`
+      document.title = loc
+      document.getElementById('title').innerHTML = loc
+    </script>
     <script src="./index.js" charset="utf-8"></script>
   </body>
 </html>

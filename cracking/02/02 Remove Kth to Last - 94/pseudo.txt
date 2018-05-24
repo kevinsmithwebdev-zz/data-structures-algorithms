@@ -1,0 +1,9 @@
+distance equals 0
+runner equals current node
+while current node is not null
+  advance current node
+  if distance >= k
+    advance runner
+
+return runner
+    
