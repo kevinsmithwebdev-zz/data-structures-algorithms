@@ -1,0 +1,24 @@
+{
+  "name": "euler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "jest": "^23.6.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "regenerator-runtime": "^0.13.1"
+  }
+}
