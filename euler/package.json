@@ -1,24 +1,76 @@
 {
-  "name": "euler",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-scripts": "2.1.3"
-  },
+  "name": "boilerplate-mocha-chai",
+  "version": "1.0.0",
+  "description": "Boilerplate to TDD using mocha and Chai",
+  "main": "lib/index.js",
+  "files": [
+    "dist",
+    "lib"
+  ],
   "scripts": {
-    "work": "node",
-    "test": "react-scripts test"
+    "lint": "./node_modules/.bin/eslint src/*.js",
+    "test": "./node_modules/.bin/mocha src/**/*.spec.js --require babel-register",
+    "test:tdd": "./node_modules/.bin/mocha src/**/*.spec.js  --bail  --require babel-register --watch",
+    "test:coverage": "nyc npm test",
+    "clear": "rimraf lib",
+    "build": "npm run clear && ./node_modules/.bin/babel --out-dir lib src",
+    "build:umd": "./node_modules/.bin/webpack --output-filename app.umd.js",
+    "build:umd:min": "./node_modules/.bin/webpack --output-filename app.umd.min.js -p",
+    "build:all": "npm run build && npm run build:umd && npm run build:umd:min",
+    "build:watch": "npm run build -- --watch",
+    "coveralls": "npm run test:coverage && nyc report --reporter=text-lcov | coveralls",
+    "start": "./node_modules/.bin/webpack-dev-server"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "nyc": {
+    "function": 90,
+    "lines": 90,
+    "check-coverage": true,
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "src/**/*.spec.js"
+    ]
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luketevl/boilerplate-mocha-chai.git"
+  },
+  "keywords": [
+    "tdd",
+    "mocha",
+    "chai"
+  ],
+  "author": "luketevl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luketevl/boilerplate-mocha-chai/issues"
+  },
+  "homepage": "https://github.com/luketevl/boilerplate-mocha-chai#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015-native-modules": "^6.9.4",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
+    "eslint": "^4.12.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "husky": "^0.14.3",
+    "jsdom": "^11.5.1",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^4.0.1",
+    "node-fetch": "^1.7.3",
+    "nyc": "^11.3.0",
+    "rimraf": "^2.6.2",
+    "sinon": "^4.1.3",
+    "sinon-chai": "^2.14.0",
+    "sinon-stub-promise": "^4.0.0",
+    "webpack": "^2.2.0-rc.2",
+    "webpack-dev-server": "^1.16.2"
+  }
 }
