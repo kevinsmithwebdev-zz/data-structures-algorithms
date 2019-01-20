@@ -1,5 +1,14 @@
+import fs from 'fs';
 import { expect } from 'chai';
-import mult35 from './s1';
+
+// import mult35 from './s1';
+
+const fileMatcher = new RegExp(/^s\d*\.js$/);
+
+const testName = __dirname.split('/src/')[1];
+
+console.log('__dirname', __dirname);
+console.log('testName', testName);
 
 const answers = [
   [0, 0],
@@ -31,8 +40,19 @@ const answers = [
   [1000, 233168],
 ];
 
-describe('mult35', () => {
-  it('should work for all tests', () => {
-    answers.forEach(test => expect(mult35(test[0])).to.be.eq(test[1]));
+const performTest = (filename) => {
+  it(`should work for solution ${filename}`, async () => {
+    await import(`./${filename}`)
+      .then(solution =>
+        answers.forEach(test => expect(solution(test[0])).to.be.eq(test[1]))
+      );
+  });
+};
+
+fs.readdir(__dirname, (err, solutions) => {
+  describe(`the test for "${testName}"...`, () => {
+    solutions
+      .filter(filename => fileMatcher.test(filename))
+      .forEach(filename => performTest(filename));
   });
 });
