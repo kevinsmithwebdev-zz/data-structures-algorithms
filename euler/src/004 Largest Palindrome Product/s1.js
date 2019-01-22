@@ -2,7 +2,7 @@ const isPalindrome = (num) => {
   const str1 = String(num);
   const str2 = str1.split('').reverse().join('');
   return str1 === str2;
-}
+};
 
 const largestPalindromeProduct = (numDigits) => {
   const max = (10 ** numDigits) - 1;
